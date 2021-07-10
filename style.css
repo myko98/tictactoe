@@ -1,0 +1,97 @@
+*,*::after,*::before {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    
+}
+
+.board {
+    
+
+    width:auto;
+    height: 1000px;
+    display: grid;
+    justify-content:center;
+    align-content: center;
+    grid-template-columns: repeat(3, auto);
+    
+}
+
+.board-area {
+    width:200px;
+    height:200px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* position: relative; not sure why */
+}
+
+/*Remove boarders of the board*/
+.board-area:first-child,
+.board-area:nth-child(2),
+.board-area:nth-child(3) {
+    border-top: none
+}
+.board-area:nth-child(3n+1) {
+    border-left: none;
+}
+.board-area:nth-child(3n+3) {
+    border-right: none;
+}
+.board-area:nth-child(9),
+.board-area:nth-child(7),
+.board-area:nth-child(8) {
+    border-bottom: none;
+}
+
+/*making X
+/*need to understand before and after*/
+.board-area.x::before,
+.board-area.x::after {
+    content: '';
+    width: 20px;
+    height:190px;
+    background-color: black;
+    position:absolute; /*not sure why*/
+}
+.board-area.x::before {
+    transform: rotate(45deg)
+}
+.board-area.x::after {
+    transform: rotate(-45deg)
+}
+
+/*making o*/
+.board-area.o::before,
+.board-area.o::after {
+    content: '';
+    
+    background-color: black;
+    position:absolute; /*not sure why*/
+    border-radius: 50%;
+}
+.board-area.o::before {
+    width: 150px;
+    height:150px;
+    background-color:black;
+}
+.board-area.o::after {
+    width: 100px;
+    height:100px;
+    background-color:white;
+}
+
+.board-area.x,
+.board-area.o {
+    cursor: not-allowed;
+}
+
+.restart {
+    display:flex;
+    justify-content: center;
+    align-content: center;
+}
+
