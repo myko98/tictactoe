@@ -1,6 +1,22 @@
 let areas = document.querySelectorAll("[data-cell]")
 let restart = document.querySelector(".restart")
+let p1Name = document.querySelector("#p1").value;
+let p2Name = document.querySelector("#p2").value;
+let p1Wins = document.querySelector("#p1Score");
+let p2Wins = document.querySelector("#p2Score");
+let msg = document.querySelector(".message");
+
+
+
+
 let circleTurn;
+
+function updateName() {
+  p1Name = document.querySelector("#p1").value;
+  p2Name = document.querySelector("#p2").value;
+  p1.name = p1Name;
+  p2.name = p2Name;
+}
 
 restart.addEventListener('click',resetBoard);
 
@@ -14,6 +30,8 @@ function resetBoard() {
   })
   circleTurn = false;
   console.log("turn is:", circleTurn);
+
+  msg.innerHTML = "";
   playGame();
 }
 
@@ -34,6 +52,11 @@ const winningMoves = [
 console.log(areas)
 
 
+let p1 = player(p1Name,"x");
+let p2 = player(p2Name,"o");
+
+console.log(p1.name);
+
 playGame();
 
 function playGame() {
@@ -41,6 +64,8 @@ function playGame() {
     item.addEventListener('click', clicked, {once: true})
     //item.addEventListener('click', clicked)
   })
+
+  
 
 
 }
@@ -63,21 +88,24 @@ function clicked(e) {
 
   if (checkWin(currentClass)) {
     console.log("winner");
+    if (currentClass == "o") {
+      p2.wins++
+      console.log(p2.wins)
+      p2Wins.innerHTML = `Wins: ${p2.wins}`
+      console.log(p2Wins)
+      msg.innerHTML = `${p2Name} won!`
+    } else if (currentClass == "x") {
+      p1.wins++
+      console.log(p1.wins);
+      p1Wins.innerHTML = `Wins: ${p1.wins}`
+      console.log(p1Wins)
+      msg.innerHTML = `${p1Name} won!`
+    } 
+  } else {
+    msg.innerHTML = `Tied!`
   }
   
 }
-
-//creates a player object with name and type (o or x)
-function player(name,type) {
-  return {
-    name,
-    type
-  }
-}
-
-let x = player("Michael","o");
-let y = player("Jordan", "x");
-console.log(x);
 
 
 function checkWin(currentClass) {
@@ -88,3 +116,10 @@ function checkWin(currentClass) {
   })
 }
 
+function player(name,type) {
+  return {
+    name: name,
+    type: type,
+    wins:0
+  }
+}

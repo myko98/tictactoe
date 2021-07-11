@@ -10,6 +10,19 @@
 </head>
 
 <body>
+    <div class="title">
+        <h1>Tic Tac Toe</h1>
+    </div>
+    <div class="players">
+        <div class="p1">
+            <input id="p1" type="text" value="Player 1" oninput="updateName()">
+            <h2 id="p1Score">Wins:</h1>
+        </div>
+        <div class="p2">
+            <input id="p2" type="text" value="Player 2" oninput="updateName()">
+            <h2 id="p2Score">Wins:</h1>
+        </div>
+    </div>
     <div class="board" id="board">
         <div class="board-area" data-cell></div>
         <div class="board-area" data-cell></div>
@@ -21,6 +34,7 @@
         <div class="board-area" data-cell></div>
         <div class="board-area" data-cell></div>
     </div>
+    <h2 class="message"></h2>
     <div class="restart">
         <button class="butt" type="button">Restart</button>
     </div>

@@ -16,7 +16,7 @@ body {
     justify-content:center;
     align-content: center;
     grid-template-columns: repeat(3, auto);
-    
+    margin-top: -200px;
 }
 
 .board-area {
@@ -93,5 +93,29 @@ body {
     display:flex;
     justify-content: center;
     align-content: center;
+    /* margin-top:-100px */
 }
 
+/*Creating Player Names*/
+.players {
+    display: flex;
+
+    justify-content:space-evenly;
+    text-align: center;
+}
+input[type="text"] {
+    border: none;
+    font-size: 50px;
+    text-align: center;
+}
+
+/*Title*/
+.title {
+    display: flex;
+    justify-content: center;
+}
+
+.message {
+    text-align: center;
+    margin-top: -100px;
+}
