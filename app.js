@@ -7,33 +7,6 @@ let p2Wins = document.querySelector("#p2Score");
 let msg = document.querySelector(".message");
 let circleTurn;
 
-function updateName() {
-  p1Name = document.querySelector("#p1").value;
-  p2Name = document.querySelector("#p2").value;
-  p1.name = p1Name;
-  p2.name = p2Name;
-}
-
-restart.addEventListener('click',resetBoard);
-
-function resetBoard() {
-  areas.forEach(item => {
-    if (item.classList.contains("o")) {
-      item.classList.remove("o")
-    } else {
-      item.classList.remove("x");
-    }
-  })
-  circleTurn = false;
-  console.log("turn is:", circleTurn);
-
-  msg.innerHTML = "";
-  playGame();
-}
-
-
-
-
 const winningMoves = [
   [0,1,2],
   [3,4,5],
@@ -45,14 +18,36 @@ const winningMoves = [
   [2,4,6]
 ]
 
-console.log(areas)
+//Updates player names whenever changed through oninput attribute
+function updateName() {
+  p1Name = document.querySelector("#p1").value;
+  p2Name = document.querySelector("#p2").value;
+  p1.name = p1Name;
+  p2.name = p2Name;
+}
 
+restart.addEventListener('click',resetBoard);
 
+//removes all x's and o's when restart button pressed
+//sets circleTurn to false so first move is always x
+//clears the current message
+//finally call playGame function to restart all areas
+function resetBoard() {
+  areas.forEach(item => {
+    if (item.classList.contains("o")) {
+      item.classList.remove("o")
+    } else {
+      item.classList.remove("x");
+    }
+  })
+  circleTurn = false;
+  msg.innerHTML = "";
+  playGame();
+}
+
+//Sets up initial player names and game
 let p1 = player(p1Name,"x");
 let p2 = player(p2Name,"o");
-
-console.log(p1.name);
-
 playGame();
 
 function playGame() {
@@ -60,12 +55,7 @@ function playGame() {
     item.addEventListener('click', clicked, {once: true})
     //item.addEventListener('click', clicked)
   })
-
-  
-
-
 }
-
 
 function clicked(e) {
   console.log(e.target);
@@ -99,7 +89,9 @@ function clicked(e) {
   
 }
 
-
+//Need to de-structure nodelist to array
+//.every returns true or false if some condition is met
+//condition is whether every area contains either x or o in the classList
 function isTied() {
   return [...areas].every(index => index.classList.contains('x') || index.classList.contains('o'))
 }
