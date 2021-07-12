@@ -5,10 +5,6 @@ let p2Name = document.querySelector("#p2").value;
 let p1Wins = document.querySelector("#p1Score");
 let p2Wins = document.querySelector("#p2Score");
 let msg = document.querySelector(".message");
-
-
-
-
 let circleTurn;
 
 function updateName() {
@@ -90,22 +86,24 @@ function clicked(e) {
     console.log("winner");
     if (currentClass == "o") {
       p2.wins++
-      console.log(p2.wins)
       p2Wins.innerHTML = `Wins: ${p2.wins}`
-      console.log(p2Wins)
       msg.innerHTML = `${p2Name} won!`
     } else if (currentClass == "x") {
       p1.wins++
-      console.log(p1.wins);
       p1Wins.innerHTML = `Wins: ${p1.wins}`
-      console.log(p1Wins)
       msg.innerHTML = `${p1Name} won!`
     } 
-  } else {
-    msg.innerHTML = `Tied!`
+  } else if (isTied()) {
+    msg.innerHTML = 'tied!'
   }
   
 }
+
+
+function isTied() {
+  return [...areas].every(index => index.classList.contains('x') || index.classList.contains('o'))
+}
+
 
 
 function checkWin(currentClass) {

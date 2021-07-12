@@ -4,12 +4,9 @@
 
 body {
     margin: 0;
-    
 }
 
 .board {
-    
-
     width:auto;
     height: 1000px;
     display: grid;
@@ -118,4 +115,21 @@ input[type="text"] {
 .message {
     text-align: center;
     margin-top: -100px;
+}
+
+footer {
+    position:fixed;
+    left:0;
+    bottom:0;
+    width: 100%;
+    text-align: right;
+}
+
+.foot {
+    display:flex;
+    justify-content: flex-end;
+}
+
+p {
+    margin:0px 0px 0px 20px
 }
